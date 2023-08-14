@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home Page</title>
+
+    <!-- Include Bootstrap CSS from CDN -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="/" style="font-family: 'Courier New', monospace; color: #ff4500; text-transform: uppercase; animation: blink 1s infinite;">
+            <span style="font-weight: bold; font-size: 1.5em;">Ami</span> Coding Pari Na......!
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ml-auto">
+                {% if request.session.gangster %}
+                <li class="nav-item">
+                    <a class="nav-link" href="/logout">Logout</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/khoj">Khoj</a>
+                </li>
+                {% else %}
+                <li class="nav-item">
+                    <a class="nav-link" href="/signup">Signup</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/login">Login</a>
+                </li>
+                {% endif %}
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-lg-6 mx-auto">
+                <h2 class="text-center">Khoj The Search Page</h2>
+                <form id="searchForm">
+                    <div class="form-group">
+                        <label for="inputValues">Input Values (comma separated integers)</label>
+                        <input type="text" class="form-control" id="inputValues" name="inputValues" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="searchValue">Search Value</label>
+                        <input type="number" class="form-control" id="searchValue" name="searchValue" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Khoj</button>
+                </form>
+                <div class="mt-3" id="result"></div>
+            </div>
+        </div>
+    </div>
+
+    <style>
+        @keyframes blink {
+            0%, 100% {
+                color: #ff4500;
+                text-shadow: 0 0 5px #ff4500;
+            }
+            50% {
+                color: #f4a261;
+                text-shadow: 0 0 10px #f4a261;
+            }
+        }
+    </style>
+
+    <!-- Include Bootstrap JS and jQuery from CDNs -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            $('#searchForm').submit(function(event) {
+                event.preventDefault();
+                const inputValues = $('#inputValues').val().split(',').map(Number);
+                const searchValue = parseInt($('#searchValue').val());
+
+                const result = inputValues.includes(searchValue);
+
+                $('#result').html(`Result: ${result}`);
+            });
+        });
+    </script>
+</body>
+</html>
