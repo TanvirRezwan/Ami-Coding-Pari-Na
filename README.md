@@ -1,5 +1,5 @@
 # Ami-Coding-Pari-Na
-# You can download the zip file. unzip it.
+# You can download the zip file 'Ami Coding Pari Na'. unzip it.
 # from pycharm open the Ami code pari na directory as project working environment.
 # wait for loading all file.
 # open terminal type cd don
